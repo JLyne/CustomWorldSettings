@@ -7,17 +7,21 @@ plugins {
   id("net.minecrell.plugin-yml.bukkit") version "0.5.2" // Generates plugin.yml
 }
 
-group = "io.papermc.paperweight"
+group = "uk.co.notnull"
 version = "1.0.0-SNAPSHOT"
-description = "Test plugin for paperweight-userdev"
+description = "Simple plugin for changing dimension type settings on the RTGame Build server"
 
 java {
   // Configure the java toolchain. This allows gradle to auto-provision JDK 17 on systems that only have JDK 8 installed for example.
   toolchain.languageVersion.set(JavaLanguageVersion.of(17))
 }
 
+repositories {
+    maven("https://repo.purpurmc.org/snapshots")
+}
+
 dependencies {
-  paperDevBundle("1.19.3-R0.1-SNAPSHOT")
+  paperweightDevBundle("org.purpurmc.purpur", "1.19.4-R0.1-SNAPSHOT")
   // paperweightDevBundle("com.example.paperfork", "1.19.3-R0.1-SNAPSHOT")
 
   // You will need to manually specify the full dependency if using the groovy gradle dsl
@@ -56,8 +60,8 @@ tasks {
 
 // Configure plugin.yml generation
 bukkit {
-  load = BukkitPluginDescription.PluginLoadOrder.STARTUP
-  main = "io.papermc.paperweight.testplugin.TestPlugin"
+  main = "uk.co.notnull.customworldsettings.CustomWorldSettings"
   apiVersion = "1.19"
   authors = listOf("Author")
+  load = net.minecrell.pluginyml.bukkit.BukkitPluginDescription.PluginLoadOrder.STARTUP
 }
